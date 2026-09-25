@@ -1,0 +1,91 @@
+﻿<Window x:Class="BingWallPaperTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BingWallPaperTest"
+        mc:Ignorable="d"
+        Title="BingWallPaperEveryDay" Height="450" Width="800" MinHeight="450" MinWidth="800" ResizeMode="CanResizeWithGrip"
+        AllowsTransparency="True" WindowStartupLocation="CenterScreen" WindowStyle="None" StateChanged="Window_StateChanged" Closed="Window_Closed">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+            <Image Name="ImgPreview" Grid.Row="0" Grid.Column="0" Stretch="UniformToFill" MouseLeftButtonDown="ImgPreview_MouseLeftButtonDown" Source="/Resources/BingWallpaperStart.jpg"></Image>
+        <Grid VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Name="SpToolBar" Orientation="Horizontal">
+                <Grid Margin="10 10 5 10" Tag="Unpack">
+                    <Button Name="BtnPackUp" Content="&#xF0D5;" ToolTip="PackUp" Style="{StaticResource BtnInfoStyle}" Click="BtnPackUp_Click" Foreground="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"></Button>
+                    <Border Name="BrdAllRedPoint" Visibility="Hidden" Width="6" Height="6" Margin="6" CornerRadius="3" Background="Red" VerticalAlignment="Top" HorizontalAlignment="Right"></Border>
+                </Grid>
+                <Grid Margin="5 10">
+                    <Button Name="BtnOpenImageFolder" Content="&#xED25;" ToolTip="Open Image Folder" Style="{StaticResource BtnInfoStyle}" Click="BtnOpenImageFolder_Click"/>
+                </Grid>
+                <Grid Margin="5 10">
+                    <Button Name="BtnDownload" Content="&#xE896;" ToolTip="Download" Style="{StaticResource BtnInfoStyle}" Click="BtnDownload_Click"/>
+                </Grid>
+                <Grid Margin="5 10">
+                    <Button Name="BtnOpenSetting" Content="&#xE115;" ToolTip="Setting" Style="{StaticResource BtnInfoStyle}" Click="BtnOpenSetting_Click"/>
+                </Grid>
+                <Grid Margin="5 10">
+                    <Button Name="BtnUpdate" Content="&#xE74A;" ToolTip="Update" Style="{StaticResource BtnInfoStyle}" Click="BtnUpdate_Click"/>
+                </Grid>
+                <Grid Margin="5 10">
+                    <Button Name="BtnAbout" Content="&#xE11B;" ToolTip="About" Style="{StaticResource BtnInfoStyle}" Click="BtnAbout_Click"/>
+                </Grid>
+            </StackPanel>
+            <StackPanel Name="SpToolBar2" Orientation="Horizontal" Grid.Column="1" FlowDirection="RightToLeft">
+                <Grid Margin="10 10 5 10">
+                    <Button Name="BtnClose" Content="&#xEF2C;" ToolTip="Close" Style="{StaticResource BtnInfoStyle}" Click="BtnClose_Click"/>
+                </Grid>
+                <Grid Margin="5 10">
+                    <Button Name="BtnMaxi" Content="&#xEF2E;" ToolTip="Maxi" Style="{StaticResource BtnInfoStyle}" Click="BtnMaxi_Click"/>
+                </Grid>
+                <Grid Margin="5 10">
+                    <Button Name="BtnMini" Content="&#xEF2D;" ToolTip="Mini" Style="{StaticResource BtnInfoStyle}" Click="BtnMini_Click"/>
+                </Grid>
+                <Grid Margin="5 10">
+                    <Button Name="BtnFeedback" Content="&#xED15;" ToolTip="Feedback" Style="{StaticResource BtnInfoStyle}" Click="BtnFeedback_Click"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+        <TextBlock Name="tbImageCopyright" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10 10 10 60" Foreground="#77ffffff" TextTrimming="CharacterEllipsis"/>
+        <Border VerticalAlignment="Bottom" Margin="10" CornerRadius="8" Background="#9fff">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="#688" Direction="270" ShadowDepth="1"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox Name="cbImageSize" Grid.Row="0" Grid.Column="0" Margin="6 6 3 6" Background="#9fff" VerticalAlignment="Center" FontSize="14" SelectionChanged="cbImageSize_SelectionChanged"/>
+                <ComboBox Name="cbWallpaperStyle" Grid.Row="0" Grid.Column="1" Margin="3 6 3 6" Background="#9fff" VerticalAlignment="Center" FontSize="14" SelectionChanged="cbWallpaperStyle_SelectionChanged"/>
+                <Button Name="btnReflush" Grid.Row="0" Grid.Column="3" Margin="0 6 3 6" Cursor="Hand" Background="#9fff" Content="Reflush" BorderBrush="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" FontSize="14" Click="btnReflush_Click"/>
+                <Button Name="btnSetWallpaper" Grid.Row="0" Grid.Column="4" Margin="3 6 3 6" Cursor="Hand" Background="#9fff" Content="SetWallpaper" BorderBrush="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" FontSize="14" Click="btnSetWallpaper_Click"/>
+            </Grid>
+        </Border>
+    </Grid>
+    <Window.Resources>
+        <WindowChrome x:Key="WindowChromeKey">
+            <WindowChrome.ResizeBorderThickness>
+                <Thickness>6</Thickness>
+            </WindowChrome.ResizeBorderThickness>
+        </WindowChrome>
+    </Window.Resources>
+</Window>
