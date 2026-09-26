@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BingWallPaperTest"
         mc:Ignorable="d"
-        Title="BingWallPaperEveryDay" Height="450" Width="800" MinHeight="450" MinWidth="800" ResizeMode="CanResizeWithGrip"
+        Title="BingWallPaperTest" Height="450" Width="800" MinHeight="450" MinWidth="800" ResizeMode="CanResizeWithGrip"
         AllowsTransparency="True" WindowStartupLocation="CenterScreen" WindowStyle="None" StateChanged="Window_StateChanged" Closed="Window_Closed">
     <Grid>
         <Grid>
@@ -15,7 +15,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-            <Image Name="ImgPreview" Grid.Row="0" Grid.Column="0" Stretch="UniformToFill" MouseLeftButtonDown="ImgPreview_MouseLeftButtonDown" Source="/Resources/BingWallpaperStart.jpg"></Image>
+            <Image Name="ImgPreview" Grid.Row="0" Grid.Column="0" Stretch="UniformToFill" MouseLeftButtonDown="ImgPreview_MouseLeftButtonDown" Source="/BingWallPaperTest;component/Resources/BingWallpaperStart.jpg"></Image>
         <Grid VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>

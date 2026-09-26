@@ -24,6 +24,18 @@ namespace BingWallPaperTest
         public MainWindow()
         {
             InitializeComponent();
+            TryLoadStartupImage();
+        }
+
+        private void TryLoadStartupImage() {
+            try {
+                // Use pack URI to load resource image embedded as Build Action = Resource
+                var uri = new Uri("pack://application:,,,/BingWallPaperTest;component/Resources/BingWallpaperStart.jpg", UriKind.Absolute);
+                ImgPreview.Source = new BitmapImage(uri);
+            } catch(Exception ex) {
+                // Log and continue; SetAppBackground or later logic can replace the image
+                CoreEngine.Current.Logger?.Error(ex, "Failed to load startup image resource");
+            }
         }
 
         private void SetAppBackground(bool force = false, bool showSuccess = false) {
@@ -35,7 +47,7 @@ namespace BingWallPaperTest
             }
             CoreEngine.Current.Logger.Info("获取图片资源成功");
             //tbImageCopyright.ToolTip = tbImageCopyright.Text = CoreEngine.Current.AppSetting.GetCopyright;
-            //ImgPreview.Source = new WPFSupportFormat().ChangeBitmapToImageSource(bitmap);
+            ImgPreview.Source = new WPFSupportFormat().ChangeBitmapToImageSource(bitmap);
         }
         private void ImgPreview_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
             throw new NotImplementedException();
@@ -102,7 +114,7 @@ namespace BingWallPaperTest
         }
 
         private void btnSetWallpaper_Click(object sender, RoutedEventArgs e) {
-
+            SetAppBackground(true);
         }
         #region Window events
         private void Window_StateChanged(object sender, EventArgs e) {

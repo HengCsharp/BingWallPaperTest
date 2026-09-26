@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace BingWallpaper.Core.Utilities {
     public class AppSettingOperation {
-        public string GetImagePath() => throw new NotImplementedException();
+        public string GetImagePath() {
+            return Path.Combine(CoreEngine.Current.AppRootDirection, "Image");
+        }
     }
 }

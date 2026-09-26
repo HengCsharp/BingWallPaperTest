@@ -18,6 +18,7 @@ namespace BingWallpaper.Core {
         }
         #endregion
         public AppSettingOperation AppSetting { get; private set; } = new AppSettingOperation();
+        public string AppRootDirection { get; private set; } = AppDomain.CurrentDomain.BaseDirectory;
         /// <summary>
         /// 日志管理器
         /// </summary>
