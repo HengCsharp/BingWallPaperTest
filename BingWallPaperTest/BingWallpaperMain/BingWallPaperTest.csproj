@@ -10,6 +10,7 @@
 	
 	<PropertyGroup>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<ApplicationIcon>Assets\Images\logo.ico</ApplicationIcon>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -22,6 +23,10 @@
 	<ItemGroup>
     <None Remove="Resources\BingWallpaperStart.jpg" />
   </ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Assets\Images\logo.ico" />
+	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Drawing.Common" Version="10.0.12" />

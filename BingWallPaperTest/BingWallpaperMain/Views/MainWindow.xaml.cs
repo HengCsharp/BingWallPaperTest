@@ -114,7 +114,7 @@ namespace BingWallPaperTest
         }
 
         private void btnSetWallpaper_Click(object sender, RoutedEventArgs e) {
-            SetAppBackground(true);
+            SetAppBackground();
         }
         #region Window events
         private void Window_StateChanged(object sender, EventArgs e) {
