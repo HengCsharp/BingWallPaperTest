@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 
 
 namespace BingWallpaper.Core {
-    internal class WallpaperManager {
+    public class WallpaperManager {
+        
         public string GetBingURL(int days = 0) {
             string infoUrl = $"http://cn.bing.com/HPImageArchive.aspx?idx={days}&n=1";
             CoreEngine.Current.Logger.Info(infoUrl);
@@ -53,7 +54,23 @@ namespace BingWallpaper.Core {
             }
         }
 
-        public bool SetWallpaper(bool forceFromWeb = false) => throw new NotImplementedException();
+        public bool SetWallpaper(bool forceFromWeb = false) {
+            var imageFolderPath = CoreEngine.Current.AppSetting.GetImagePath();
+            var imageFilePath = Path.Combine(imageFolderPath, $"bing{DateTime.Now.ToString("yyyymmdd")}");
+
+            if(forceFromWeb) {
+                CoreEngine.Current.Logger.Error("设置墙纸 暂不支持从网络获取");
+                return false;
+            }
+
+            try {
+                SystemParametersInfo(20, 1, imageFilePath, 1);
+            } catch (Exception e){
+                CoreEngine.Current.Logger.Error(e, $"设置壁纸失败：系统接口调用错误");
+                return false;
+            }
+            return true;
+        }
 
         public Bitmap GetWallpaperImage(bool forceFromWeb = false) {
             var imageFolderPath = CoreEngine.Current.AppSetting.GetImagePath();
