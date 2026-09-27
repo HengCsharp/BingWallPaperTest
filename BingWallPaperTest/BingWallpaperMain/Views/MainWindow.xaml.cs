@@ -1,4 +1,5 @@
 ﻿using BingWallpaper.Core;
+using BingWallPaperTest.Views;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.Drawing;
@@ -97,7 +98,8 @@ namespace BingWallPaperTest
         }
 
         private void BtnDownload_Click(object sender, RoutedEventArgs e) {
-            throw new NotImplementedException();
+            var wd = new DownloadWindow();
+            wd.Show();
         }
 
         private void BtnOpenSetting_Click(object sender, RoutedEventArgs e) {

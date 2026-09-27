@@ -39,7 +39,8 @@ namespace BingWallpaper.Core {
         }
 
         public bool DownloadWallpaperImage(DateTime date, out string result) {
-            throw new NotImplementedException();
+            Current.Logger.Info($"下载壁纸图片");
+            return new WallpaperManager().DownloadWallpaper(date, out result);
         }
     }
 }

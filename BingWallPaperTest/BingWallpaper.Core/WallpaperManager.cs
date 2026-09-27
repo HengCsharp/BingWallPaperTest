@@ -153,7 +153,43 @@ namespace BingWallpaper.Core {
             }
         }
 
-        public bool DownloadWallpaper(DateTime date, out string result) => throw new NotImplementedException();
+        public bool DownloadWallpaper(DateTime date, out string result) {
+            var imgFolderPath = CoreEngine.Current.AppSetting.GetImagePath();
+            var imgFilePath = Path.Combine(imgFolderPath, $"bing{DateTime.Now.ToString("yyyyMMdd")}.jpg");
+            if(File.Exists(imgFilePath)) {
+                result = "文件已存在";
+                CoreEngine.Current.Logger.Info($"下载壁纸失败：文件已存在");
+                return false;
+            }
+            int interval = new TimeSpan(DateTime.Now.Ticks - date.Ticks).Days;
+            var bingUrl = GetBingURL(interval);
+            if(bingUrl == null) {
+                result = "接口连接失败";
+                CoreEngine.Current.Logger.Info($"下载壁纸失败：{result}");
+                return false;
+            }
+            var webReq = (HttpWebRequest)WebRequest.Create(bingUrl);
+            webReq.Method = "GET";
+            try {
+                using (var webResp = webReq.GetResponse()) {
+                    using(var stream = webResp.GetResponseStream()) {
+                        using(var bmpWallpaper = (Bitmap)Image.FromStream(stream)) {
+                            if(!Directory.Exists(imgFolderPath)) {
+                                Directory.CreateDirectory(imgFolderPath);
+                            }
+                            bmpWallpaper.Save(imgFilePath,ImageFormat.Jpeg);
+                        }
+                    }
+                }
+            } catch (Exception e){
+                result = "下载壁纸失败";
+                CoreEngine.Current.Logger.Error(e, $"{result}-网络连接失败");
+                return false;
+            }
+            result = "下载壁纸成功";
+            CoreEngine.Current.Logger.Info($"{result}：bing{DateTime.Now.ToString("yyyyMMdd")}.jpg");
+            return true;
+        }
 
         [DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
         public static extern int SystemParametersInfo(
