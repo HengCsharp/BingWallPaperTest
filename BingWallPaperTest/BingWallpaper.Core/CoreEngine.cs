@@ -28,8 +28,9 @@ namespace BingWallpaper.Core {
             throw new NotImplementedException();
         }
 
-        public void SetWallpaper(bool forceFromWeb = false) { 
-            throw new NotImplementedException();
+        public void SetWallpaper(bool forceFromWeb = false) {
+            Current.Logger.Info($"设置墙纸");
+            new WallpaperManager().SetWallpaper();
         }
 
         public Bitmap GetWallpaperImage(bool forceFromWeb = false) {
